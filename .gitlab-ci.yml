@@ -17,6 +17,8 @@ test-code-job1:
   script:
     - echo "If the files are built successfully, test some files with one command:"
     - hostname
+  only:
+    - test 
 
 
 
@@ -24,3 +26,5 @@ test-code-job2:
   stage: test
   script:
     - echo "If the files are built successfully, test other files with a different command:"
+  only:
+    - dev 
