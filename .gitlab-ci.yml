@@ -10,6 +10,7 @@ test:
   tags:
     - test
   script:
+    - cd MyApp
     - pwd
     - mv test.env .env
     - dotnet run
@@ -21,6 +22,7 @@ dev:
   tags:
     - dev
   script:
+    - cd MyApp
     - pwd
     - mv dev.env .env
     - dotnet run
@@ -33,6 +35,6 @@ prod:
   tags:
     - prod
   script:
-    -cd MyApp
+    - cd MyApp
     - pwd
     - dotnet run
