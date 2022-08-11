@@ -33,5 +33,6 @@ prod:
   tags:
     - prod
   script:
+    -cd MyApp
     - pwd
     - dotnet run
