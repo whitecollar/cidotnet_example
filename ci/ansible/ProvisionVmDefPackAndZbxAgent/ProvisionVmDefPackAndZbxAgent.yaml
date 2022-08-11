@@ -14,12 +14,6 @@
     apt: deb=/tmp/packages-microsoft-prod.deb
     become: true
 
-  - name: Install .NET Core SDK
-    apt:
-      name: dotnet-sdk-2.2
-      state: present
-      update_cache: yes
-    become: true
   
   - name: Copy gpg key
     ansible.builtin.copy:
