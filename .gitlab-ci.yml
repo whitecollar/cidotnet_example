@@ -10,7 +10,9 @@ test:
   tags:
     - test
   script:
-    - hostname
+    - pwd
+    - mv test.env .env
+    - dotnet run
 
 dev:
   stage: dev
@@ -19,7 +21,10 @@ dev:
   tags:
     - dev
   script:
-    - hostname
+    - pwd
+    - mv dev.env .env
+    - dotnet run
+
 
 prod:
   stage: prod
@@ -28,4 +33,5 @@ prod:
   tags:
     - prod
   script:
-    - hostname
+    - pwd
+    - dotnet run

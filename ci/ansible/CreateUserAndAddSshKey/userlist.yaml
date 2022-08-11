@@ -1,0 +1,2 @@
+users_details:
+- {name: 'antipin', groups: ['sudo'], nopass: true, key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6NPsr/yR+4lQHqPeAonPeYZXzHfL/CiKf3Z2j4JRgykz8M4ft36FU2gDeQp0K0v6VYNF/RtpUPkY9strh4DlbQPnlAojrdUwQSs1fb74sDV38UUw6TFtfk5h8c9yW88MKVYZVHaiusvdBDZCmrddSvhOlCHesmkVe0gV0Cv6Moh4rS2GdIzVuxkmHCFedShv38J47yVYpTA5SotWFk4OGNusaE4A5qy1fLVjq1z7K08qFcENOqHURH0ch4QuvCd0QFP5hshDZRbFFtKDPISKqz59nfD0lbfO4rv7KXSJ+dieLTjM9LxeRIOKlGreCyFBc74McGDaTqEBi2RDiDLrh lex@serv4}

@@ -1,0 +1,30 @@
+---
+- name: Create user and add ssh key
+  hosts: testservers  
+  become: true
+  vars_files:
+    - ./userlist.yaml
+  tasks:
+  - name: Create User If Not Exist
+    ansible.builtin.user:
+        name: "{{ item.name }}"
+        groups: "{{ item.groups }}"
+        shell: /bin/bash
+    with_items: "{{ users_details }}"
+
+  - name: Add SSH Key
+    ansible.posix.authorized_key:
+        user: "{{ item.name }}"
+        key: "{{ item.key }}"
+    with_items: "{{ users_details }}"
+    
+  - name: Enable Nopasswd
+    ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/{{ item.name }}
+        line: '{{ item.name }} ALL=(ALL) NOPASSWD: ALL'
+        state: present
+        mode: 0440
+        create: yes
+        validate: 'visudo -cf %s'
+    with_items: "{{ users_details }}"
+    when: item.nopass 

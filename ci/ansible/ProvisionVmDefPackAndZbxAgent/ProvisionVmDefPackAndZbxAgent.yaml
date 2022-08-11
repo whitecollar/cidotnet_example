@@ -1,0 +1,74 @@
+---
+- name: VM Provision Default Package and Zabbix Agent Configuration
+  hosts: testservers  
+  become: true
+  vars_files:
+    - ./packagelist.yaml
+  tasks:
+  - name: Download MS product repository
+    get_url:
+      url: https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+      dest: /tmp/packages-microsoft-prod.deb
+
+  - name: Install MS product repository
+    apt: deb=/tmp/packages-microsoft-prod.deb
+    become: true
+
+  - name: Install .NET Core SDK
+    apt:
+      name: dotnet-sdk-2.2
+      state: present
+      update_cache: yes
+    become: true
+  
+  - name: Copy gpg key
+    ansible.builtin.copy:
+      mode: 0644
+      src: ./zabbix-official-repo.gpg
+      dest: /tmp/zabbix-official-repo.gpg
+      force: yes
+
+  - name: Add Apt signing key on remote server to keyring
+    ansible.builtin.apt_key:
+      id: FBABD5FB20255ECAB22EE194D13D58E479EA5ED4
+      file: /tmp/zabbix-official-repo.gpg
+      state: present
+
+  - name: Add Apt signing key on remote server to keyring
+    ansible.builtin.apt_key:
+      id: A1848F5352D022B9471D83D0082AB56BA14FE591
+      file: /tmp/zabbix-official-repo.gpg
+      state: present
+
+  - name: Add Zabbix Repos
+    ansible.builtin.copy:
+      mode: 0644
+      src: ./zabbix.list
+      dest: /etc/apt/sources.list.d/zabbix.list
+      force: yes
+
+  - name: Apt-get update
+    ansible.builtin.apt:
+      update_cache: yes
+
+  - name: Install Packages
+    ansible.builtin.apt:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+    with_items: "{{ packages }}"
+
+  - name: Delete default Zabbix Config
+    ansible.builtin.file:
+      path: /etc/zabbix/zabbix_agentd.conf
+      state: absent
+
+  - name: Upload our Zabbix Config
+    ansible.builtin.copy:
+      mode: 0644
+      src: ./zabbix_agentd.conf
+      dest: /etc/zabbix/zabbix_agentd.conf
+
+  - name: Restart service Zabbix Agent
+    ansible.builtin.service:
+      name: zabbix-agent
+      state: restarted

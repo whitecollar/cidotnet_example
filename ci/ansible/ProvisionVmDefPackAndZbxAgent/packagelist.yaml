@@ -1,0 +1,21 @@
+packages:
+- {name: htop, state: latest}
+- {name: mc, state: latest}
+- {name: nmap, state: latest}
+- {name: net-tools, state: latest}
+- {name: zabbix-agent, state: latest}
+- {name: tcpdump, state: latest}
+- {name: netcat, state: latest}
+- {name: curl, state: latest}
+- {name: nethogs , state: latest}
+- {name: iotop, state: latest}
+- {name: ethtool, state: latest}
+- {name: nmon , state: latest}
+- {name: tmux , state: latest}
+- {name: ncdu , state: latest}
+- {name: dotnet-sdk-6.0 , state: latest}
+- {name: aspnetcore-runtime-6.0 , state: latest}
+- {name: dotnet-runtime-6.0 , state: latest}
+
+
+
