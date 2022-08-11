@@ -1,11 +1,22 @@
 stages:
 - test
-#- build
-#- test
+- dev
+#- prod
 
 test:
   stage: test
+  #only:
+  #  - test
   tags:
     - test
+  script:
+    - hostname
+
+dev:
+  stage: dev
+  #only:
+  #  - test
+  tags:
+    - dev
   script:
     - hostname
