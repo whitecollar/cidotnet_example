@@ -8,8 +8,7 @@ build-code-job:
   script:
     - echo "Check the ruby version, then build some Ruby project files:"
     - hostname
-  only:
-    - test
+
 
 test-code-job1:
   stage: test
