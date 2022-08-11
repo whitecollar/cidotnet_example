@@ -1,9 +1,11 @@
 stages:
-  - build
+- test
+#- build
+#- test
 
-build:
- stage: build
- script:
-  - 'hostname'
- only:
-   - test
+test:
+  stage: test
+  tags:
+    - test
+  script:
+    - hostname
