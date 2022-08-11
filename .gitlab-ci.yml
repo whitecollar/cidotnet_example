@@ -1,30 +1,9 @@
 stages:
   - build
-  - test
 
-
-build-code-job:
-  stage: build  
-  script:
-    - echo "Check the ruby version, then build some Ruby project files:"
-    - hostname
-  only:
-    - test  
-
-
-test-code-job1:
-  stage: test
-  script:
-    - echo "If the files are built successfully, test some files with one command:"
-    - hostname
-  only:
-    - test 
-
-
-
-test-code-job2:
-  stage: test
-  script:
-    - echo "If the files are built successfully, test other files with a different command:"
-  only:
-    - dev 
+build:
+ stage: build
+ script:
+  - 'hostname'
+ only:
+   - test
